@@ -1,0 +1,72 @@
+name: Release Resume
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-resume
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build and release PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine bump type
+        id: bump
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 --match 'v[0-9]*' 2>/dev/null || true)
+          if [ -n "$LAST_TAG" ]; then
+            LOG=$(git log --format=%B "$LAST_TAG..HEAD")
+          else
+            LOG=$(git log --format=%B HEAD)
+          fi
+
+          if echo "$LOG" | grep -qiF '[major]'; then
+            BUMP_TYPE=major
+          elif echo "$LOG" | grep -qiF '[minor]'; then
+            BUMP_TYPE=minor
+          else
+            BUMP_TYPE=patch
+          fi
+
+          echo "Last release: ${LAST_TAG:-none}"
+          echo "Bump type: $BUMP_TYPE"
+          echo "bump-type=$BUMP_TYPE" >> "$GITHUB_OUTPUT"
+
+      - name: Bump version
+        id: version
+        uses: wuguishifu/version-bump-workflow@v1
+        with:
+          bump-type: ${{ steps.bump.outputs.bump-type }}
+          tag-prefix: v
+          initial-version: 0.0.0
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: bo.tex
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.version.outputs.tag }}
+        run: |
+          # Stable asset name so releases/latest/download/resume.pdf always points at the newest PDF.
+          cp bo.pdf resume.pdf
+          gh release create "$VERSION" resume.pdf \
+            --target "$GITHUB_SHA" \
+            --title "$VERSION" \
+            --generate-notes
