@@ -1,63 +1,19 @@
-\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
-\geometry{margin=1.5cm,columnsep=1.2cm}
-\usepackage{paracol}
-\usepackage{hyperref}
-\usepackage{longtable}
-\usepackage{array}
-\renewcommand{\baselinestretch}{0.9} 
-
-% Change the font if you want to, depending on whether
-% you're using pdflatex or xelatex/lualatex
-\ifxetexorluatex
-  % If using xelatex or lualatex:
-  \setmainfont{Lato}
-\else
-  % If using pdflatex:
-  \usepackage[default]{lato}
-\fi
-
-% Change the colours if you want to
-\definecolor{IFBlue}{HTML}{0F6688}
-\definecolor{IFDarkBlue}{HTML}{00425C}
-\definecolor{IFMediumBlue}{HTML}{17739A}
-\definecolor{IFLightBlue}{HTML}{228FBD}
-\definecolor{IFDeepBlue}{HTML}{0B4C66}
-
-\definecolor{IFGrey}{HTML}{6D6E71}
-\definecolor{IFDarkGrey}{HTML}{231F20}
-\definecolor{IFMediumGrey}{HTML}{4D4D4F}
-\definecolor{IFLightGrey}{HTML}{808285}
-
-\colorlet{heading}{IFBlue}
-\colorlet{accent}{IFLightBlue}
-\colorlet{emphasis}{IFMediumGrey}
-\colorlet{body}{IFGrey}
-\colorlet{tagline}{IFBlue}
-
-\renewcommand{\itemmarker}{{\small\textbullet}}
-\renewcommand{\ratingmarker}{\faCircle}
+\documentclass[10pt,a4paper]{resume}
 
 \begin{document}
 
-\begin{minipage}{\textwidth}
-{\LARGE\color{name}\bfseries{BO BRAMER}}\par\vspace{4px}
-{\footnotesize\bfseries{
+\cvheader{BO BRAMER}{
     \email{bramer.bo@gmail.com}
     \linkedin{bo-bramer}
     \homepage{bramer.dev}
     \github{wuguishifu}
-}}
-\vspace{6px}
-\end{minipage}
-
-\AtBeginEnvironment{itemize}{\small}
+}
 
 \cvsection{Work Experience}
 
-{\normalsize\color{IFLightBlue}\textbf{Solid Starts Inc}}\hfill\null{\small\textbf{\textit{San Francisco, CA (Remote)}}}\par\smallskip
-{\small{\textbf{Senior Software Engineer}}}\hfill\null{\small\textbf{\textit{April 2026 — present}}}\par
-\medskip
-\begin{itemize}[label=\raisebox{0.25ex}{\tiny$\bullet$}]
+\cventry{Solid Starts, Inc}{San Francisco, CA (Remote)}
+\cvrole{Senior Software Engineer}{April 2026 — present}
+\begin{highlights}
     \item Owned the \textbf{entire revenue platform} (paywalls, checkout, entitlements) for a \textbf{500K+ MAU} app, processing \textbf{\$5.95M per quarter}.
     \item Built an \textbf{app-to-web Stripe checkout} that moved \textbf{\$1.29M in 3 months} off app-store fees, with per-country localized pricing.
     \item Built a \textbf{config-driven paywall platform} for pricing tests and campaigns without app releases, driving \textbf{\$1.12M in 3 months}.
@@ -65,16 +21,16 @@
     \item Led the \textbf{legacy AWS migration} to Convex, NestJS, and Railway; used AI to rebuild the legacy mobile app in \textbf{under 14 days}.
     \item Architected \textbf{per-PR preview environments} across Railway, Convex, and Expo EAS, enabling isolated QA of AI-generated code.
     \item Built an \textbf{AI agent suite} automating bug fixes, A/B tests, and QA, plus CX automations that \textbf{cut ticket time by 80\%}.
-\end{itemize}
+\end{highlights}
 \divider
 
-{\normalsize\color{IFLightBlue}\textbf{Inkitt, Inc.}}\hfill\null{\small\textbf{\textit{San Francisco, CA}}}\par\smallskip
-{\small{\textbf{Tech Lead — Monetization \& Growth}}}\hfill\null{\small\textbf{\textit{December 2024 — April 2026}}}\par\vspace{6px}
-{\small{\textbf{Senior Software Engineer II}}}\hfill\null{\small\textbf{\textit{March 2026 — April 2026}}}\par
-{\small{\textbf{Senior Software Engineer}}}\hfill\null{\small\textbf{\textit{March 2025 — March 2026}}}\par
-{\small{\textbf{Software Engineer}}}\hfill\null{\small\textbf{\textit{October 2024 — March 2025}}}\par
-\medskip
-\begin{itemize}[label=\raisebox{0.25ex}{\tiny$\bullet$}]
+\cventry{Inkitt, Inc.}{San Francisco, CA}
+\cvrole{Tech Lead — Monetization \& Growth}{December 2024 — April 2026}
+\vspace{6px}
+\cvrole{Senior Software Engineer II}{March 2026 — April 2026}
+\cvrole{Senior Software Engineer}{March 2025 — March 2026}
+\cvrole{Software Engineer}{October 2024 — March 2025}
+\begin{highlights}
     \item Owned \textbf{monetization and pricing platform} across mobile and web, driving \textbf{70\%+ gains in D0 RPI, ROAS, and LTV} through \textbf{50+ experiments} and durable infrastructure.
     \item Designed and shipped a \textbf{behavior-aware pricing \& paywall framework} with cohort-stable rollouts, \textbf{increasing renewals by 30\%} without sacrificing long-term LTV.
     \item Architected the company's new \textbf{landing-page experimentation platform}, enabling rapid iteration while improving net ROAS/RPI by \textbf{10-20\%} and reducing CPI/CPM by \textbf{5-10\%}.
@@ -82,40 +38,39 @@
     \item Replaced vendor-dependent video production workflows with \textbf{automated processing pipelines}, eliminating contract labor costs and accelerating creative iteration.
     \item Set architectural direction across multiple applications and backend services, resolving cross-team dependencies and enabling rapid experimentation across the entire platform.
     \item Partnered directly with \textbf{C-suite leadership} on time-sensitive, revenue-critical initiatives, translating business strategy into\\production systems.
-\end{itemize}
+\end{highlights}
 \divider
 
-{\normalsize\color{IFLightBlue}\textbf{Panyon, Co.}}\hfill\null{\small\textbf{\textit{Seattle, WA (Remote)}}}\par\smallskip
-{\small{\textbf{Senior Software Engineer}}}\hfill\null{\small\textbf{\textit{March 2024 — October 2024}}}\par
-\medskip
-\begin{itemize}[label=\raisebox{0.25ex}{\tiny$\bullet$}]
+\cventry{Panyon, Co.}{Seattle, WA (Remote)}
+\cvrole{Senior Software Engineer}{March 2024 — October 2024}
+\begin{highlights}
     \item Led architecture for a \textbf{cross-platform health application}, spanning \textbf{React Native, native iOS/Android, OpenGL ES (GLSL), and C}.
     \item Designed a \textbf{camera-based PPG recording pipeline} achieving \textbf{medical-grade signal quality} on commodity smartphones.
-    \item Optimized real-time image processing to sustain \textbf{180 hz (5.6 ms/frame)} on mobile devices.
+    \item Optimized real-time image processing to sustain \textbf{180 Hz (5.6 ms/frame)} on mobile devices.
     \item Built reusable \textbf{signal-processing libraries} and high-precision \textbf{peak-detection algorithm} underpinning biomarker extraction.
     \item Collaborated with medical doctors to translate clinical requirements into robust, production-ready algorithms.
     \item Designed a \textbf{serverless backend} using \textbf{Firebase and AWS (Lambda, S3, RDS, DynamoDB, API Gateway)}.
-\end{itemize}
+\end{highlights}
 \divider
 
-{\normalsize\color{IFLightBlue}\textbf{ChemTalk}}\hfill\null{\small\textbf{\textit{Thousand Oaks, CA}}}\par\smallskip
-{\small{\textbf{Co-Founder}}}\hfill\null{\small\textbf{\textit{December 2020 — January 2024}}}\par
-\medskip
-\begin{itemize}[label=\raisebox{0.25ex}{\tiny$\bullet$}]
+\cventry{ChemTalk}{Thousand Oaks, CA}
+\cvrole{Co-Founder}{December 2020 — January 2024}
+\begin{highlights}
     \item Co-founded and scaled a multi-product education platform, owning \textbf{technical architecture and execution}.
     \item Built and managed a \textbf{55+ person organization}, leading large cross-functional initiatives including a full platform rebuild.
     \item Drove \textbf{75\% YoY traffic growth} through CDN optimization, caching strategy, and performance improvements (FCP, LCP).
-    \item Led platform development using \textbf{Next.js, and React Native}, establishing shared infrastructure and engineering standards.
-\end{itemize}
+    \item Led platform development using \textbf{Next.js and React Native}, establishing shared infrastructure and engineering standards.
+\end{highlights}
 
 \cvsection{Technical Skills}
-\begin{itemize}[label=\raisebox{0.25ex}{\tiny$\bullet$}]
+\begin{itemize}
     \item \textbf{Languages \& Frameworks}: TypeScript, Kotlin, Swift, React Native (Expo), Next.js, NestJS
-    \item \textbf{Database \& Infra}: Postgres, MongoDB, Redis, AWS, Firebase, Google Cloud (GCP)
-    \item \textbf{Expertise}: Distributed systems, systems \& database architecture, experimentation platforms, product-driven engineering
+    \item \textbf{Database \& Infra}: Postgres, Redis, AWS, Firebase, Google Cloud (GCP), Railway, Infisical, Convex
+    \item \textbf{Expertise}: Distributed Systems, Systems \& Database Architecture, Experimentation Platforms, Product-driven Engineering
 \end{itemize}
 
 \cvsection{Education}
-\cvevent{B.S. Chemical Engineering — Specialization in Biomolecular Engineering}{}{}{University of California, Irvine}
+\cventry{B.S. Chemical Engineering}{}
+\cvrole{University of California, Irvine}{}
 
 \end{document}
